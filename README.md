@@ -9,3 +9,14 @@ A simple PHP command line tool to generate CodeIgniter bare migration file.
 or
 
     php composer.phar require phplucidframe/bare-migration
+
+## Example Usage
+
+    $ php vendor/phplucidframe/bare-migration/ci bare:migration add_new_post_table
+
+OR, you can also CD to the package directory.
+
+    $ cd vendor/phplucidframe/bare-migration
+    $ php ci bare:migration add_new_post_table
+
+The above example will create a new migration file `application/migration/{YmdHis}_add_new_post_table.php` where `{YmdHis}` would be the current timestamp.
