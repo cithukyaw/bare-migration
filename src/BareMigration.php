@@ -80,7 +80,8 @@ class BareMigration
         $name       = $this->convertCase($this->name);
         $version    = date('YmdHis');
         $className  = 'Migration_'.$name;
-        $fileName   = __DIR__.'/../../../../application/migrations/'.$version.'_'.strtolower($name).'.php';
+        $fileName   = $version.'_'.strtolower($name).'.php';
+        $fullFileName = __DIR__.'/../../../../application/migrations/'.$fileName;
 
         $content = <<<CODE
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
@@ -98,6 +99,13 @@ class $className extends CI_Migration {
     }
 }
 CODE;
-        return file_put_contents($fileName, mb_convert_encoding($content, 'UTF-8')) ? true : false;
+        if (file_put_contents($fullFileName, mb_convert_encoding($content, 'UTF-8'))) {
+            echo 'Generated version: '.$version."\n";
+            echo 'Generated file name: '.$fileName."\n";
+            return true;
+        } else {
+            die('Generation failed.');
+            return false;
+        }
     }
 }
