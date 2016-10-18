@@ -1,0 +1,17 @@
+{
+    "name": "phplucidframe/bare-migration",
+    "description": "A simple PHP command line tool to generate CodeIgniter bare migration file.",
+    "license": "MIT",
+    "type": "library",
+    "keywords": ["console", "generator"],
+    "authors": [
+        {
+            "name": "Sithu K.",
+            "email": "cithukyaw@gmail.com",
+            "homepage": "http://www.phplucidframe.com/sithu"
+        }
+    ],
+    "require":{
+        "php": ">=5.3"
+    }
+}
