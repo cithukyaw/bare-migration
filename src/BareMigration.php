@@ -2,7 +2,7 @@
 /**
  * Command-line tool to generate bare CodeIgniter migration file
  *
- *    php ci bare:migration [name]
+ *    php ci migration:bare [name]
  *
  * @package     BareMigration
  * @author      Sithu K. <cithukyaw@gmail.com>
@@ -25,6 +25,10 @@ class BareMigration
     protected $argc;
     /** @var array Array of arguments passed to script **/
     protected $argv;
+    /** @var array Array of commands */
+    protected $commands = array(
+        'migration:bare',
+    );
 
     /**
      * Constructor
@@ -36,12 +40,10 @@ class BareMigration
         $this->argc = count($this->argv) - 1;
 
         $this->command = strtolower(array_shift($this->argv));
-        if ($this->command !== 'bare:migration') {
-            die('Command is not valid, e.g., php ci bare:migration add_new_post_table');
+        if ($this->validateCommand()) {
+            $this->name = array_shift($this->argv);
+            $this->execute();
         }
-
-        $this->name = array_shift($this->argv);
-        $this->execute();
     }
 
     /**
@@ -67,13 +69,26 @@ class BareMigration
     }
 
     /**
+     * Check the command is valid
+     * @return mixed TRUE or die
+     */
+    public function validateCommand()
+    {
+        if (!in_array($this->command, $this->commands)) {
+            die('Command is not valid, e.g., php ci migration:bare add_new_post_table');
+        }
+
+        return true;
+    }
+
+    /**
      * Execute the command
      * @return boolean TRUE on success; FALSE on failure
      */
     private function execute()
     {
         if (empty($this->name)) {
-            die('Provide your migration name, e.g., php ci bare:migration add_new_post_table');
+            die('Provide your migration name, e.g., php ci migration:bare add_new_post_table');
             exit;
         }
 

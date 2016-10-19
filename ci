@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Shell script for generate a bare CodeIgniter migration file using `php ci bare:migration [name]`
+ * Shell script for generate a bare CodeIgniter migration file
  *
  * @author      Sithu K. <cithukyaw@gmail.com>
  * @license     http://www.opensource.org/licenses/mit-license.php MIT License
