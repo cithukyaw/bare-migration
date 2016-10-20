@@ -1,6 +1,6 @@
 # CodeIgniter Bare Migration Generator
 
-A simple PHP command line tool to generate CodeIgniter bare migration file.
+A simple PHP command line tool to generate a CodeIgniter blank migration class file. It is very similiar to `doctrine:migrations:generate` of Symfony [DoctrineMigrationsBundle](http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html).
 
 ## Installation using Composer
 
