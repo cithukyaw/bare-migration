@@ -99,18 +99,37 @@ class BareMigration
         $fullFileName = __DIR__.'/../../../../application/migrations/'.$fileName;
 
         $content = <<<CODE
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class $className extends CI_Migration {
-
+class $className extends CI_Migration
+{
     public function up()
     {
-        // Write your code here for up version
+        // this up() migration is auto-generated, please modify it to your needs
+        // Drop table 'table_name' if it exists
+        \$this->dbforge->drop_table('table_name', true);
+
+        // Table structure for table 'table_name'
+        \$this->dbforge->add_field(array(
+            'id' => array(
+                'type' => 'MEDIUMINT',
+                'constraint' => '8',
+                'unsigned' => true,
+                'auto_increment' => true
+            ),
+            'created_at' => array(
+                'type' => 'DATETIME',
+                'null' => false,
+            )
+        ));
+        \$this->dbforge->add_key('id', true);
+        \$this->dbforge->create_table('table_name');
     }
 
     public function down()
     {
-        // Write your code here for down version
+        // this down() migration is auto-generated, please modify it to your needs
+        \$this->dbforge->drop_table('table_name', true);
     }
 }
 CODE;
